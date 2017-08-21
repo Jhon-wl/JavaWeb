@@ -34,10 +34,10 @@ public class ServletTest1 extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //tomcat iso 8859-1  默认编码
-        String name = new String(req.getParameter("nameP").getBytes("ISO-8859-1"),"UTF-8");
+        String name = req.getParameter("nameP");
         String paaaword = req.getParameter("pwdP");
 
-        resp.setContentType("text/html,charset=UTF-8");
+//        resp.setContentType("text/html,charset=UTF-8");
         PrintWriter out = resp.getWriter();
         out.println("<html>");
         out.println("<head>");
