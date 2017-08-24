@@ -12,5 +12,15 @@
         <input name="pwdP" type="text"/>
         <input type="submit" value="提交"/>
     </form>
+    <script src="jquery-2.2.4.jar"></script>
+    <script type="text/javascript">
+        var o = {"name":"老姨","age":12};
+
+        $.ajax({
+            type:"POST",
+            url:"demo1",
+            data:o
+        });
+    </script>
 </body>
 </html>

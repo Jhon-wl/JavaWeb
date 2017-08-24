@@ -1,5 +1,6 @@
 package com.web.servlet;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.web.User;
 
 import javax.servlet.ServletException;
@@ -7,6 +8,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -44,7 +46,7 @@ public class ServletTest1 extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //tomcat iso 8859-1  默认编码
-        String name = req.getParameter("nameP");
+     //   String name = req.getParameter("nameP");
 //        req.setAttribute("name",name);
 //        User user = new User("laowang",28);
 //        req.setAttribute("User",user);
@@ -58,7 +60,7 @@ public class ServletTest1 extends HttpServlet{
 //        list.add(user3);
 //        req.setAttribute("UserList",list);
         //请求转发
-        req.getRequestDispatcher("/WEB-INF/demo.jsp").forward(req,resp);
+  //      req.getRequestDispatcher("/WEB-INF/demo.jsp").forward(req,resp);
         //请求重定向
         //resp.sendRedirect("demo2");
 //        String paaaword = req.getParameter("pwdP");
@@ -91,6 +93,24 @@ public class ServletTest1 extends HttpServlet{
 //        out.println("</html>");
 //        out.close();
     //    System.out.println(name+"  "+paaaword);
+
+        //向前端页面发送json数据
+//        User user = new User("老塔",111);
+//        ObjectMapper mapper = new ObjectMapper();
+//        String json = mapper.writeValueAsString(user);
+//        resp.setContentType("application/json;charset=utf-8");
+//        resp.getWriter().write(json);
+
+        //接受前端传回来的json
+        StringBuffer buffer = new StringBuffer();
+        BufferedReader reader = req.getReader();
+        String line = null;
+        while((line=reader.readLine())!=null){
+
+            buffer.append(line);
+        }
+        System.out.println(buffer.toString());
+
     }
 
 }
